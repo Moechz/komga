@@ -1,0 +1,92 @@
+{
+  "app_id": "komgadocker",
+  "title": "Komga",
+  "image": "gotson/komga:1.30.0",
+  "repo_name": "komga",
+  "github_repo": "komga",
+  "mode": "plain",
+  "container_port": 25600,
+  "host_port": 8024,
+  "category": [
+    "Audio_Video_Entertainment"
+  ],
+  "user": "1000:1000",
+  "volumes": [
+    {
+      "host": "/Volume1/DockerAppData/komgadocker/config",
+      "container": "/config"
+    },
+    {
+      "host": "/Volume1/DockerAppData/komgadocker/data",
+      "container": "/data"
+    }
+  ],
+  "env": {
+    "TZ": "Asia/Shanghai"
+  },
+  "healthcheck": [
+    "CMD-SHELL",
+    "curl -s -o /dev/null http://127.0.0.1:25600/ || exit 1"
+  ],
+  "healthcheck_interval": "30s",
+  "healthcheck_timeout": "10s",
+  "healthcheck_retries": 3,
+  "healthcheck_start_period": "60s",
+  "auth": "gotson",
+  "upstream_url": "https://github.com/gotson/komga",
+  "upstream_license": "MIT",
+  "license": "MIT",
+  "descript": "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder.",
+  "release_note": "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root.",
+  "important": "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN.",
+  "translations": {
+    "zh-cn": {
+      "descript": "Komga 是一个面向漫画、日漫、欧美漫画、杂志和电子书的媒体服务器。它会扫描书库、读取 ComicRack/ComicInfo 元数据，并提供网页阅读器、收藏、阅读列表、搜索、OPDS、Kobo Sync 与 KOReader Sync。本应用使用 Docker Hub 官方镜像并以非 root 用户运行；数据库与书籍都保存在应用数据目录。",
+      "important": "初始登录：admin@example.com / admin，请立即在用户设置里修改。漫画/书籍放到 DockerAppData/komgadocker/data，数据库与设置保存在 .../config。需要 DockerEngine；无法访问 Docker Hub 时请先配置镜像加速。卸载并删除数据前请备份 config 与 data。应用通过局域网 HTTP 访问。",
+      "release_note": "1. 首个版本：Komga 1.30.0，来自 Docker Hub，x86_64 + aarch64 双包，非 root。"
+    },
+    "zh-hk": {
+      "descript": "Komga 是一個面向漫畫、日漫、歐美漫畫、雜誌和電子書的媒體伺服器。它會掃描書庫、讀取 ComicRack/ComicInfo 元資料，並提供網頁閱讀器、收藏、閱讀清單、搜尋、OPDS、Kobo Sync 與 KOReader Sync。本應用使用 Docker Hub 官方鏡像並以非 root 使用者運行；資料庫與書籍都保存在應用資料目錄。",
+      "important": "初始登入：admin@example.com / admin，請立即在使用者設定裡修改。漫畫/書籍放到 DockerAppData/komgadocker/data，資料庫與設定保存在 .../config。需要 DockerEngine；無法存取 Docker Hub 時請先設定鏡像加速。解除安裝並刪除資料前請備份 config 與 data。應用透過局域網 HTTP 存取。",
+      "release_note": "1. 首個版本：Komga 1.30.0，來自 Docker Hub，x86_64 + aarch64 雙包，非 root。"
+    }
+  },
+  "data_notes": "`config` holds the database, settings and thumbnails; `data` is the library root that contains your comics/books. Copying both folders is a complete backup.",
+  "design_notes": [
+    "**Non-root.** Runs as `1000:1000`; verified on real hardware.",
+    "**Two volumes, one port.** `/config` for state, `/data` for the library; only port 25600 is published.",
+    "**Health check** probes `/` on 25600.",
+    "**Fixed image tag**, Docker Hub only, no privileged mode, no host network, no Docker socket."
+  ],
+  "limitations": [
+    "Komga does not create a comic library. Put your files into `DockerAppData/komgadocker/data` and add the library folder in the web UI.",
+    "The database is SQLite by default. Very large libraries may benefit from more memory; set `JAVA_TOOL_OPTIONS` if you need a larger heap.",
+    "Plain HTTP on the LAN; do not expose the published port to the internet without a TLS reverse proxy."
+  ],
+  "runtime_files": [
+    {
+      "path": "config",
+      "purpose": "database, settings and generated thumbnails",
+      "created": "first start",
+      "growth": "grows with the library",
+      "lifecycle": "never overwritten; back it up"
+    },
+    {
+      "path": "data",
+      "purpose": "comics/books library",
+      "created": "by the user",
+      "growth": "grows with every added file",
+      "lifecycle": "owned by the user; back it up"
+    }
+  ],
+  "official": "https://github.com/gotson/komga",
+  "help": "https://github.com/Moechz/komga/issues",
+  "platform": "x86_64",
+  "publisher": "Moechz",
+  "compose_project": "komgadocker",
+  "upstream_version": "1.30.0",
+  "release_tag_prefix": "v",
+  "version": "1.30.0-1",
+  "docker_socket": false,
+  "group_add": []
+}
