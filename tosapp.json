@@ -86,7 +86,7 @@
   "compose_project": "komgadocker",
   "upstream_version": "1.30.0",
   "release_tag_prefix": "v",
-  "version": "1.30.0-2",
+  "version": "1.30.0-4",
   "docker_socket": false,
   "group_add": [],
   "platforms": [
