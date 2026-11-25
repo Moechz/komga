@@ -111,6 +111,10 @@ for s in secs:
     chk(i is None or len(i.group(1)) <= 512, f"[{s}] important longer than 512 chars")
     chk(f'version      = "{ver}"' in body, f"[{s}] version != {ver}")
 chk(re.search(r"\bbeta\b", lang, re.I) is None, "lang must not contain the word 'beta' (V11)")
+# The store's .lang parser is INI-like: an ASCII ';' starts a comment, so a
+# value containing one is truncated (and the trailing quote is lost) - measured
+# on 2026-11-24 with another application. Full-width '；' is fine.
+chk(";" not in lang, "lang must not contain an ASCII ';' (INI comment: the value would be truncated)")
 
 # ---- svg icon ---------------------------------------------------------------
 svg_path = stage / f"{appid}.svg"

@@ -1,47 +1,58 @@
 # NOTICE — third-party components and attributions
 
 This package (`komgadocker`, TOS 7 Docker application) is an independent packaging by Moechz of
-the upstream **Komga** project.
+the upstream **Komga** project. It contains **no upstream source code**: the application is
+pulled from Docker Hub at install time and used unmodified.
 
 ## 1. Upstream application — Komga
 
-- Project: https://github.com/gotson/komga
-- Licence: **MIT**
-- Relationship: the upstream application is used **unmodified**, inside the container
-  image. No upstream source code is redistributed in this package.
+- Project: <https://github.com/gotson/komga>
+- Maintainer: gotson and the Komga contributors
+- Licence: **MIT** (verified in the upstream repository's `LICENSE` file)
+- Relationship: the application runs unmodified inside the container image. This package only
+  adds a compose file, App Center metadata, translations and an icon.
 
-## 2. Container image — gotson/komga:1.30.0
+## 2. Container image — `gotson/komga:1.30.2`
 
-- Registry: Docker Hub (`gotson/komga:1.30.0`)
-- Maintainer: gotson
-- The image is pulled from Docker Hub at install time and is not redistributed here.
+- Registry: Docker Hub (`docker.io/gotson/komga:1.30.2`)
+- Published by the upstream maintainer, not by this package. The image is pulled by Docker on
+  the NAS at install/upgrade time and is **not redistributed** in this archive.
+- Multi-architecture: the tag is a multi-arch manifest list that contains `linux/amd64`
+  (x86_64) and `linux/arm64` (aarch64), so the same tag serves both TOS packages.
+- Base and bundled components inside the image (licences as shipped by upstream):
+  - Ubuntu 26.04 LTS (base userland, various licences)
+  - Eclipse Temurin JDK/JRE 25 (GPL-2.0 with the Classpath Exception)
+  - [kepubify](https://github.com/pgaskin/kepubify) (MIT) for Kobo KEPUB conversion
+  - the Java library set in `/app/lib` (Spring Boot, jOOQ, Flyway, Lucene, imageio, Thumbnailator,
+    etc. — Apache-2.0, EPL-2.0, MIT/BSD variants; see the image's own `lib` directory and each
+    project's licence)
+  - `libheif`, `libwebp`, `libjxl` (LGPL/BSD) for HEIF/WebP/JPEG-XL cover support
 
-## 3. Components inside the image
-
-The image is built by its maintainer on top of a base distribution and bundles the
-application's own dependencies. Their licences are documented in the image's package
-metadata; they are shipped inside the image only and are not redistributed as separate
-files by this package.
-
-## 4. This packaging
+## 3. This packaging
 
 The files authored for this package — `docker-compose.yml`, `config.ini`,
-`komgadocker.lang`, `komgadocker.svg`, `entrypoint.sh` (when present), build scripts and this
-documentation — are released under the same licence as the upstream project where
-required, and otherwise under **GPL-3.0** (see `LICENSE`).
+`komgadocker.lang`, `komgadocker.svg`, the build scripts and the documentation
+(`README.md`, `PRIVACY.md`, `NOTICE.md`, `CHANGELOG.md`) — are released under the **MIT**
+licence, matching the `LICENSE` file in this repository (Copyright © 2026 Moechz).
 
-## 5. Trademarks
+## 4. Trademarks
 
-“Komga”, “TerraMaster” and “TOS” are trademarks or registered trademarks of their
-respective owners. Their use here is descriptive only. This package is **not affiliated
-with, sponsored or endorsed by** the upstream project or TerraMaster.
+“Komga”, “TerraMaster” and “TOS” are trademarks or registered trademarks of their respective
+owners. Their use here is purely descriptive (to describe compatibility and origin). This
+package is **not affiliated with, sponsored or endorsed by** the upstream project or
+TerraMaster.
 
-## 6. Icon
+## 5. Icon
 
-The application icon in `src/komgadocker.svg` is a mark drawn or assembled for this package; it
-does not reproduce a third-party logo unless the icon was taken from the upstream project,
-in which case it is used only to identify that project.
+`src/komgadocker.svg` is a vector mark drawn for this package (an open book with text lines on
+a rounded tile). It is not the upstream logo and contains no third-party trademark. It is
+released under the same MIT licence as the rest of the packaging.
+
+## 6. No warranty
+
+The package is provided “as is”, without warranty of any kind. The upstream project provides
+the application; this packaging only delivers it to TOS 7.
 
 ## 7. Contact
 
-Moechz — moechz@163.com — <https://www.moechz.com/>
+Moechz — moechz@163.com — <https://github.com/Moechz/komga/issues>

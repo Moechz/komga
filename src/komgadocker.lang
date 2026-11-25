@@ -1,11 +1,11 @@
 # ===========================================================================
 # Multilingual file for the TOS 7 Docker application "komgadocker".
 # File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
-# The App Center picks the text matching the user's device language;
-# untranslated nodes fall back to English, which the official guide allows.
+# The App Center picks the text matching the user's device language.
+# Untranslated nodes fall back to English, which the official guide allows.
 # Fields: name (app title), auth (upstream author), descript (up to 512
 # chars), release_note, important (up to 512 chars).
-# Translations come from tosapp.json "translations"; run
+# Translations come from tosapp.json "translations". Re-render with:
 #   tosdocker lang <app>          to re-render this file
 #   tosdocker translate <app>     to see what still needs translating
 # ===========================================================================
@@ -13,183 +13,183 @@
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [zh-cn]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga 是一个面向漫画、日漫、欧美漫画、杂志和电子书的媒体服务器。它会扫描书库、读取 ComicRack/ComicInfo 元数据，并提供网页阅读器、收藏、阅读列表、搜索、OPDS、Kobo Sync 与 KOReader Sync。本应用使用 Docker Hub 官方镜像并以非 root 用户运行；数据库与书籍都保存在应用数据目录。"
-release_note = "1. 首个版本：Komga 1.30.0，来自 Docker Hub，x86_64 + aarch64 双包，非 root。"
-important    = "初始登录：admin@example.com / admin，请立即在用户设置里修改。漫画/书籍放到 DockerAppData/komgadocker/data，数据库与设置保存在 .../config。需要 DockerEngine；无法访问 Docker Hub 时请先配置镜像加速。卸载并删除数据前请备份 config 与 data。应用通过局域网 HTTP 访问。"
+descript     = "Komga 是一个面向漫画、日漫、欧美漫画、杂志和电子书的媒体服务器。它会扫描书库目录，读取 ComicInfo.xml（ComicRack）与 EPUB 元数据，并提供网页阅读器、收藏、阅读列表、搜索、OPDS、Kobo Sync、KOReader 同步和 REST API。官方 Docker Hub 镜像以非 root 容器（uid 1000）原样运行，书籍与数据库都保存在应用数据目录。"
+release_note = "1.30.2-1 — 针对 1.30.0-6 审核意见的整改。C4：补全隐私政策（保留期、用户权利、安全措施、第三方共享、删除渠道）。C8：披露第三方端点（GitHub 版本检查、启用 Kobo Sync 时的乐天 Kobo、Docker Hub 拉取镜像、可选的 OIDC 登录）。C9：描述与实际功能一致，应用没有默认账号，首次启动由用户自行创建管理员。T1：上游升级到 1.30.2。F7/S11/V1：网页界面启用 gzip 压缩、延长健康检查启动窗口、容器固定非 root 并丢弃全部 capability。"
+important    = "没有默认账号：首次启动请打开应用（http://NAS-IP:8024）自行创建管理员用户。漫画与书籍放到 DockerAppData/komgadocker/data，然后在网页界面把该目录添加为书库。数据库、设置、缩略图与日志保存在 .../config。需要 DockerEngine。应用通过局域网 HTTP 访问，暴露到公网前请加 TLS 反向代理。"
 
 [zh-hk]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga 是一個面向漫畫、日漫、歐美漫畫、雜誌和電子書的媒體伺服器。它會掃描書庫、讀取 ComicRack/ComicInfo 元資料，並提供網頁閱讀器、收藏、閱讀清單、搜尋、OPDS、Kobo Sync 與 KOReader Sync。本應用使用 Docker Hub 官方鏡像並以非 root 使用者運行；資料庫與書籍都保存在應用資料目錄。"
-release_note = "1. 首個版本：Komga 1.30.0，來自 Docker Hub，x86_64 + aarch64 雙包，非 root。"
-important    = "初始登入：admin@example.com / admin，請立即在使用者設定裡修改。漫畫/書籍放到 DockerAppData/komgadocker/data，資料庫與設定保存在 .../config。需要 DockerEngine；無法存取 Docker Hub 時請先設定鏡像加速。解除安裝並刪除資料前請備份 config 與 data。應用透過局域網 HTTP 存取。"
+descript     = "Komga 是一個面向漫畫、日漫、歐美漫畫、雜誌和電子書的媒體伺服器。它會掃描書庫目錄，讀取 ComicInfo.xml（ComicRack）與 EPUB 元資料，並提供網頁閱讀器、收藏、閱讀清單、搜尋、OPDS、Kobo Sync、KOReader 同步和 REST API。官方 Docker Hub 鏡像以非 root 容器（uid 1000）原樣運行，書籍與資料庫都保存在應用資料目錄。"
+release_note = "1.30.2-1 — 針對 1.30.0-6 審核意見的整改。C4：補全隱私政策（保留期、使用者權利、安全措施、第三方共享、刪除管道）。C8：披露第三方端點（GitHub 版本檢查、啟用 Kobo Sync 時的樂天 Kobo、Docker Hub 拉取鏡像、可選的 OIDC 登入）。C9：描述與實際功能一致，應用沒有預設帳號，首次啟動由使用者自行建立管理員。T1：上游升級到 1.30.2。F7/S11/V1：網頁介面啟用 gzip 壓縮、延長健康檢查啟動視窗、容器固定非 root 並丟棄全部 capability。"
+important    = "沒有預設帳號：首次啟動請開啟應用（http://NAS-IP:8024）自行建立管理員使用者。漫畫與書籍放到 DockerAppData/komgadocker/data，然後在網頁介面把該目錄加入為書庫。資料庫、設定、縮圖與日誌保存在 .../config。需要 DockerEngine。應用透過局域網 HTTP 存取，暴露到公網前請加 TLS 反向代理。"
 
 [fr-fr]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [de-de]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [it-it]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [es-es]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [hu-hu]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [ja-jp]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [ko-kr]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [pl-pl]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [ru-ru]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [tr-tr]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [pt-pt]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [ar-sa]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [cs-cz]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [he-il]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [id-id]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [nb-no]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [nl-nl]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [sv-se]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [th-th]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 
 [vi-vn]
 name         = "Komga"
 auth         = "gotson"
 version      = "@@VERSION@@"
-descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library, reads ComicRack/ComicInfo metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync and KOReader Sync. This package runs the official Docker Hub image as a non-root container; the database and your books stay in the application data folder."
-release_note = "1. First release: Komga 1.30.0 from Docker Hub, x86_64 + aarch64, non-root."
-important    = "First login: admin@example.com / admin - change it immediately in the user settings. Put comics/books in DockerAppData/komgadocker/data; the database and settings live in .../config. Needs DockerEngine; add a registry mirror if Docker Hub is unreachable. Back up config and data before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Komga is a media server for comics, manga, bandes dessinees, magazines and eBooks. It scans your library folders, reads ComicInfo.xml (ComicRack) and EPUB metadata, and serves a web reader with collections, read lists, search, OPDS, Kobo Sync, KOReader sync and a REST API. The official Docker Hub image runs unmodified as a non-root container (uid 1000), and your books and database stay in the application data folder."
+release_note = "1.30.2-1 - remediation of the 1.30.0-6 review. C4: complete privacy policy (retention, user rights, security measures, third-party sharing, deletion channel). C8: disclosed third-party endpoints (GitHub release check, Rakuten Kobo when Kobo Sync is enabled, Docker Hub pull, optional OIDC login). C9: description now matches the delivered app - there is no default account, you create the admin user on first start. T1: upstream 1.30.2. F7/S11/V1: gzip compression for the web UI, longer health-check start-up window, container pinned non-root with all capabilities dropped."
+important    = "There is no default account: on first start open the app (http://NAS-IP:8024) and create your own admin user. Put comics/books in DockerAppData/komgadocker/data, then add that folder as a library in the web UI. Database, settings, thumbnails and logs live in .../config. Needs DockerEngine. Plain HTTP on the LAN - use a TLS reverse proxy before exposing it to the internet."
 

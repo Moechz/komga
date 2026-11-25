@@ -1,7 +1,7 @@
 # ===========================================================================
 # Komga for TerraMaster TOS 7 (Docker application)
 # ===========================================================================
-# Upstream image : gotson/komga:1.30.0 (Docker Hub, used unmodified)
+# Upstream image : gotson/komga:1.30.2 (Docker Hub, used unmodified)
 #                  -> https://github.com/gotson/komga
 #
 # Ports   : host 8024 -> container 25600. The host port is in the
@@ -18,6 +18,19 @@
 # Escaping: docker compose interpolates ${VAR}/$VAR in compose files, so any
 #           '$' meant for the shell is written '$$'.
 #
+# NON-ROOT: the upstream image declares no USER (its Dockerfile stops at
+#           ENTRYPOINT), so it would start as root. This package pins
+#           `user: "1000:1000"`, drops every capability and forbids privilege
+#           escalation, so the JVM runs as uid 1000 with an empty capability
+#           set. Verified on hardware with `docker exec komgadocker id -u`
+#           (1000) and a write test into both volumes.
+#
+# WEB UI SPEED: JAVA_TOOL_OPTIONS turns on Spring Boot gzip compression for
+#           the reader's HTML/JS/CSS/JSON. The unmodified image serves the
+#           initial bundle uncompressed (about 3.5 MB). With compression the
+#           first paint stays quick on slow links, which is what the review
+#           item F7 (first paint slower than 5 seconds) is about.
+#
 # NOTE for maintainers: never place a comment line directly in front of a
 # "- value" sequence item (ports, volumes, ...). The official
 # TOSAppSelfTestingTool parses the compose file line by line; a comment inside
@@ -26,23 +39,28 @@
 
 services:
   komgadocker:
-    image: gotson/komga:1.30.0
+    image: gotson/komga:1.30.2
     container_name: komgadocker
     restart: unless-stopped
     user: "1000:1000"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     ports:
       - "8024:25600"
     environment:
       TZ: "Asia/Shanghai"
+      JAVA_TOOL_OPTIONS: "-Dserver.compression.enabled=true -Dserver.compression.mime-types=text/html,text/css,text/javascript,application/javascript,application/json,image/svg+xml -Dserver.compression.min-response-size=1024"
     volumes:
       - /Volume1/DockerAppData/komgadocker/config:/config
       - /Volume1/DockerAppData/komgadocker/data:/data
     healthcheck:
-      test: ["CMD-SHELL", "curl -s -o /dev/null http://127.0.0.1:25600/ || exit 1"]
+      test: ["CMD-SHELL", "curl -fsS --max-time 5 -o /dev/null http://127.0.0.1:25600/ || exit 1"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 60s
+      retries: 5
+      start_period: 180s
 
 # TOS App Center web metadata (must be the last block of the file):
 # web.port is the published host port above, protocol is http.
